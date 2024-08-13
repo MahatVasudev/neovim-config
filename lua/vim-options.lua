@@ -1,4 +1,5 @@
-vim.keymap.set("n", "<CR>", "m`o<Esc>``")
+vim.keymap.set("n", "=", "mzO<Esc>`z", { desc = "add blank line above" })
+vim.keymap.set("n", "_", "mzo<Esc>`z", { desc = "add blank line below" })
 vim.keymap.set("n", "<S-CR>", "m`O<Esc>``")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
