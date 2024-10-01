@@ -23,7 +23,7 @@ vim.opt.laststatus= 0
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
 
--- vim.opt.incommand = "split"
+vim.opt.incommand = "split"
 vim.opt.ignorecase = true
 vim.opt.smarttab = true
 vim.opt.breakindent = true
