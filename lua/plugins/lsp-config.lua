@@ -40,15 +40,6 @@ return {
 			lspconfig.docker_compose_language_service.setup({
 				capabilities = capabilities,
 			})
-
-			lspconfig.eslint.setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig.tsserver.setup({
-				capabilities = capabilities,
-			})
-
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 			})
