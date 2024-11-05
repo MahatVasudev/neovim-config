@@ -15,9 +15,9 @@ vim.opt.autoindent = true
 vim.opt.smartindent= true
 
 vim.opt.hlsearch = true
-vim.opt.backup= true
+-- vim.opt.backup= true
 vim.opt.showcmd= true
-vim.opt.cmdheight= 0
+vim.opt.cmdheight= 1
 vim.opt.laststatus= 0
 
 vim.opt.expandtab = true
@@ -35,6 +35,6 @@ vim.opt.path:append({"**"})
 vim.opt.wildignore:append({"*/node_modules/*"})
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.splitkeep = "cursor"
+-- vim.opt.splitkeep = "cursor"
 vim.opt.mouse = ""
 vim.opt.formatoptions:append({"r"})

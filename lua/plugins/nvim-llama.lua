@@ -1,0 +1,11 @@
+-- return {{
+--     'jpmcb/nvim-llama',
+--   config = function() 
+--     require('nvim-llama').setup({
+--       defaults = {
+--           debug = false,
+--           model = "llama3.1"
+--       }
+--     })
+--   end,
+-- }}
