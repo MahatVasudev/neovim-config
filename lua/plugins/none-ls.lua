@@ -7,7 +7,6 @@ return {
 			sources = {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.golines,
-				null_ls.builtins.diagnostics.ast_grep,
 				null_ls.builtins.diagnostics.golangci_lint,
 			},
 			 -- Auto-format on save
