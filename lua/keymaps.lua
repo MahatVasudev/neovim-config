@@ -3,6 +3,7 @@ local opts = { noremap = true, silent = true }
 
 keymap.set("n","x",'"_x')
 
+keymap.set("i","jk","<Esc>")
 -- Increment - Decrement
 keymap.set("n","+","<C-a>")
 keymap.set("n","-","<C-x>")
