@@ -25,18 +25,12 @@ return {
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.ts_ls.setup({
+      lspconfig.ast_grep.setup({
 				capabilities = capabilities,
 			})
-
-			lspconfig.ast_grep.setup({
-				capabilities = capabilities,
-			})
-
 			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 			})
-
 			lspconfig.docker_compose_language_service.setup({
 				capabilities = capabilities,
 			})
@@ -47,6 +41,15 @@ return {
         capabilities =capabilities, 
       })
 
+      lspconfig.ts_ls.setup({
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+        -- Keybindings for LSP
+          local opts = { noremap = true, silent = true }
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        end,
+        filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+      })
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action, {})

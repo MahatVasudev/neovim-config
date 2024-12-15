@@ -35,7 +35,7 @@ return {
                 },
             },
             renderers = {
-                directory = {
+              directory = {
                     { "icon" },
                     { "current_filter" },
                     { "name" },
@@ -47,7 +47,7 @@ return {
                     { "diagnostics" },
                 },
             },
-        })
+})
         vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal right<CR>', {})
     end
 }

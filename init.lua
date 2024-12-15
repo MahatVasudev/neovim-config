@@ -10,19 +10,21 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 
-vim.cmd [[
-  highlight Normal ctermbg=none
-  highlight NonText ctermbg=none
-]]
+
 vim.opt.rtp:prepend(lazypath)
 
 require("vim-options")
 require("keymaps")
 require("lazy").setup("plugins")
 
+
 vim.cmd [[
   highlight Normal guibg=none
   highlight NonText guibg=none
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+]]
+vim.cmd [[
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 ]]
