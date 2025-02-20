@@ -5,6 +5,9 @@ vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 vim.cmd("set clipboard=unnamed")
 vim.cmd("let g:auto_save=1")
+vim.cmd("set autoindent")
+vim.cmd("abbr @@ mahatvasudev@gmail.com")
+
 --
 vim.g.mapleader = " "
 --

@@ -13,9 +13,24 @@ return {
 				})
 			end, {})
 
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-		end,
-	},
+
+      -- Keymap to dynamically prompt for a query
+      vim.keymap.set("n", "<Leader>ws", function()
+          vim.ui.input({ prompt = "Enter query: " }, function(query)
+            if query then
+            builtin.lsp_workspace_symbols({ query = query })
+            else
+            print("Query canceled or empty!")
+            end
+            end)
+          end, { desc = "Search Workspace Symbols (dynamic query)" })
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+      vim.keymap.set("n", "<Leader>gs", builtin.git_status, { desc = "Git Status" })
+      vim.keymap.set("n", "<Leader>gc", builtin.git_commits, { desc = "Git Commits" })
+      vim.keymap.set("n", "<Leader>gb", builtin.git_branches, { desc = "Git Branches" })     
+      vim.keymap.set("n", "<Leader>cp", ":Telescope commands<CR>", { desc = "Command Palette" })
+      end,
+  },
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
 		config = function()
