@@ -49,6 +49,8 @@ return {
         "clangd", -- C/C++
         "pyright", -- Python
         "rust_analyzer", -- Rust
+        "html", -- HTML
+        "cssls", -- CSS
       }
 
       for _, server in ipairs(servers) do

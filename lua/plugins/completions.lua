@@ -15,7 +15,23 @@ return {
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
-			-- Set up nvim-cmp.
+
+
+      local ls = require("luasnip")
+      local s = ls.snippet
+      local t = ls.text_node
+
+
+      ls.add_snippets("go", {
+        s("iferr", {
+          t("if err != nil {"),
+          t({"","\t"}),
+          ls.insert_node(1),
+          t({"","}"}),
+          }),
+        })
+
+      -- Set up nvim-cmp.
 			local cmp = require("cmp")
 			require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -52,5 +68,6 @@ return {
 				}),
 			})
 		end,
+
 	},
 }
