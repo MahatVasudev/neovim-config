@@ -42,15 +42,15 @@ return {
       local lspconfig = require("lspconfig")
 
       local servers = {
-        "lua_ls", -- Lua
-        "gopls", -- Go
-        "tailwindcss", -- TailwindCSS
+        "lua_ls",                          -- Lua
+        "gopls",                           -- Go
+        "tailwindcss",                     -- TailwindCSS
         "docker_compose_language_service", -- Docker Compose
-        "clangd", -- C/C++
-        "pyright", -- Python
-        "rust_analyzer", -- Rust
-        "html", -- HTML
-        "cssls", -- CSS
+        "clangd",                          -- C/C++
+        "pyright",                         -- Python
+        "rust_analyzer",                   -- Rust
+        "html",                            -- HTML
+        "cssls",                           -- CSS
       }
 
       for _, server in ipairs(servers) do
@@ -68,7 +68,16 @@ return {
         end,
         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
       })
-
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "●",
+          spacing = 2,
+        },
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+      })
       -- Keymaps for LSP actions
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Info" })
       vim.keymap.set("n", "go", vim.lsp.buf.type_definition, { desc = "Type Definition" })
