@@ -42,15 +42,17 @@ return {
       local lspconfig = require("lspconfig")
 
       local servers = {
-        "lua_ls",                          -- Lua
-        "gopls",                           -- Go
-        "tailwindcss",                     -- TailwindCSS
+        "lua_ls",                      -- Lua
+        "gopls",                       -- Go
+        "tailwindcss",                 -- TailwindCSS
         "docker_compose_language_service", -- Docker Compose
-        "clangd",                          -- C/C++
-        "pyright",                         -- Python
-        "rust_analyzer",                   -- Rust
-        "html",                            -- HTML
-        "cssls",                           -- CSS
+        "clangd",                      -- C/C++
+        -- "pyright",-- Python
+        "pylsp",                       -- Python Current
+        "rust_analyzer",               -- Rust
+        "html",                        -- HTML
+        "cssls",                       -- CSS
+        "prismals",                    -- Prisma
       }
 
       for _, server in ipairs(servers) do
