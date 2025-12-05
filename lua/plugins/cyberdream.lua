@@ -5,11 +5,11 @@ return {
   config = function()
     require("cyberdream").setup({
 
-      variant = "default",
+      variant = "dark",
       transparent = false,
       saturation = 1,
       italic_comments = false,
-      hide_fillchars = false,
+      hide_fillchars = true,
       borderless_pickers = false,
       terminal_colors = true,
       cache = false,
@@ -28,7 +28,8 @@ return {
         dark = {
           red = "#d9383e",
           magenta = "#c63cab",
-          fg = "#e6e6e6",
+          fg = "#000000",
+          bg = "#000000",
         },
 
         light = {

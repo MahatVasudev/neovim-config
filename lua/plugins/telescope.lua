@@ -6,18 +6,72 @@ return {
 		config = function()
 			local builtin = require("telescope.builtin")
 
+			-- vim.keymap.set("n", "<C-p>", function()
+			-- 	builtin.find_files({
+			-- 		-- Set the cwd dynamically based on the current buffer's directory
+			-- 		cwd = vim.fn.getcwd(),
+			-- 	})
+			-- end, {})
+
 			vim.keymap.set("n", "<C-p>", function()
-				builtin.find_files({
-					-- Set the cwd dynamically based on the current buffer's directory
+				require("telescope.builtin").find_files({
 					cwd = vim.fn.getcwd(),
+
+					attach_mappings = function(prompt_bufnr, map)
+						local action_state = require("telescope.actions.state")
+						local actions = require("telescope.actions")
+
+						-- SHIFT+ENTER → create file
+						map("i", "<S-CR>", function()
+							local picker = action_state.get_current_picker(prompt_bufnr)
+							local prompt = picker:_get_prompt()
+
+							if prompt == "" then
+								print("No filename entered")
+								return
+							end
+
+							local path = vim.fn.getcwd() .. "/" .. prompt
+
+							-- Create file if missing
+							if vim.fn.filereadable(path) == 0 then
+								vim.fn.writefile({}, path)
+								print("Created file: " .. path)
+							else
+								print("File already exists: " .. path)
+							end
+
+							actions.close(prompt_bufnr)
+							vim.cmd("edit " .. path)
+						end)
+
+						return true
+					end,
+
+					-- Add a visible reminder line in Telescope
+					prompt_title = "Find or Create Files",
+					results_title = "Shift + Enter to Create a New File",
 				})
 			end, {})
-			vim.keymap.set("n", "<Leader>fh", function()
+
+			vim.keymap.set("n", "<Leader>fH", function()
 				require("telescope.builtin").find_files({
-					hidden = true,
-					no_ignore = false, -- show files ignored by .gitignore? (set true if you want)
+					cwd = vim.fn.getcwd(),
+					hidden = true, -- show hidden files
+					no_ignore = true, -- include files normally ignored by gitignore
+					follow = true, -- follow symlinks (optional)
+					find_command = {
+						"fd",
+						"--hidden",
+						"--no-ignore",
+						"--type",
+						"f",
+						"--exclude",
+						".git",
+					},
+					results_title = "Hidden Files Only",
 				})
-			end, { desc = "Find Hidden Files" })
+			end, { desc = "Find Only Hidden Files" })
 
 			-- Keymap to dynamically prompt for a query
 			vim.keymap.set("n", "<Leader>ws", function()
