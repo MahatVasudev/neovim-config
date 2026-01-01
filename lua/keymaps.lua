@@ -3,11 +3,13 @@ local opts = { noremap = true, silent = true }
 
 keymap.set("n", "x", '"_x')
 
+keymap.set("v", "<leader>y", '"+y', opts)
+keymap.set("n", "<leader>Y", '"+Y', opts)
 keymap.set("i", "jk", "<Esc>")
 -- Increment - Decrement
-keymap.set("n", "+", "<C-a>")
-keymap.set("n", "-", "<C-x>")
 
+-- keymap.set("n", "+", "<C-a>")
+-- keymap.set("n", "-", "<C-x>")
 -- Normal mode
 keymap.set("n", "<A-j>", ":m .+1<CR>==")
 keymap.set("n", "<A-k>", ":m .-2<CR>==")
@@ -26,9 +28,9 @@ keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
 
 -- Tabs
 keymap.set("n", "te", ":tabedit")
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
-keymap.set("n", "tw", ":tabclose<Return>", opts)
+keymap.set("n", "<tab>", ":bnext<CR>", opts)
+keymap.set("n", "<s-tab>", ":bprev<CR>", opts)
+keymap.set("n", "tw", ":bd<CR>", opts)
 
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
@@ -39,6 +41,17 @@ keymap.set("n", "sh", "<C-w>h")
 keymap.set("n", "sk", "<C-w>k")
 keymap.set("n", "sj", "<C-w>j")
 keymap.set("n", "sl", "<C-w>l")
+
+-- Increase / decrease height
+keymap.set("n", "<A-Up>", ":resize +2<CR>", opts) -- Alt + Up → taller
+keymap.set("n", "<A-Down>", ":resize -2<CR>", opts) -- Alt + Down → shorter
+
+-- Increase / decrease width
+keymap.set("n", "<A-Right>", ":vertical resize +5<CR>", opts) -- Alt + Right → wider
+keymap.set("n", "<A-Left>", ":vertical resize -5<CR>", opts) -- Alt + Left → narrower
+
+-- Maximize current window
+keymap.set("n", "<leader>sm", ":wincmd _ | wincmd |<CR>", opts)
 
 -- Terminal
 keymap.set("t", "<Esc>", [[<C-\><C-n>]])
@@ -66,6 +79,25 @@ keymap.set("n", "<leader>rn", function()
 	vim.opt.relativenumber = not vim.opt.relativenumber:get()
 end, { desc = "Toggle relative number" })
 
+-- Open quickfix
+keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Quickfix Open" })
+
+-- Close quickfix
+keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Quickfix Close" })
+
+-- Toggle quickfix and populate with current LSP diagnostics
+keymap.set("n", "<leader>cq", function()
+	vim.diagnostic.setqflist({ open = true, severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Diagnostics → Quickfix" })
+
+-- Jump to next / previous quickfix item
+keymap.set("n", "]q", ":cnext<CR>", { desc = "Next Quickfix" })
+keymap.set("n", "[q", ":cprevious<CR>", { desc = "Prev Quickfix" })
+
+-- Optional: jump through LSP diagnostics without populating quickfix
+keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
+
 -- TODO-COMMENTS
 
 -- Jump between TODOs
@@ -77,5 +109,19 @@ vim.keymap.set("n", "[t", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
 
--- Telescope integration
-vim.keymap.set("n", "<leader>ft", ":TodoTelescope<CR>", { desc = "Find todos" })
+if vim.g.strict_mode then
+	local function arrow_missing()
+		vim.notify("Use hjkl / motions instead of arrows!!", vim.log.levels.WARN)
+		return ""
+	end
+	-- Disable arrow keys in normal mode
+	vim.keymap.set("n", "<Up>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set("n", "<Down>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set("n", "<Left>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set("n", "<Right>", arrow_missing, { noremap = true, silent = true })
+	-- Optional: also in insert mode
+	vim.keymap.set("i", "<Up>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set("i", "<Down>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set("i", "<Left>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set("i", "<Right>", arrow_missing, { noremap = true, silent = true })
+end

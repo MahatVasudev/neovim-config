@@ -1,49 +1,57 @@
 return {
+	"rcarriga/nvim-notify",
+	config = function()
+		local notify = require("notify")
 
-  "rcarriga/nvim-notify",
-  config = function()
-    local notify = require("notify")
+		notify.setup({
+			-- Animation style
+			stages = "fade_in_slide_out", -- smooth fade + slide out
 
-    notify.setup({
-      -- Animation style
-      stages = "fade_in_slide_out", -- smooth + modern
+			-- Timeout for each notification
+			timeout = 2500,
 
-      -- Notification timeout (ms)
-      timeout = 2500,
+			-- Background color
+			background_colour = "#000000",
 
-      -- Background (fits your all-black theme)
-      background_colour = "#000000",
+			-- Minimum log level to show
+			level = "INFO",
 
-      -- Minimum level to show (INFO/WARN/ERROR)
-      level = "INFO",
+			-- Icons for each log level
+			icons = {
+				ERROR = "",
+				WARN = "",
+				INFO = "",
+				DEBUG = "",
+				TRACE = "✎",
+			},
 
-      -- Icons for cyberpunk style
-      icons = {
-        ERROR = "",
-        WARN = "",
-        INFO = "",
-        DEBUG = "",
-        TRACE = "✎",
-      },
+			-- Maximum width/height
+			max_width = 80,
+			max_height = 15,
 
-      -- Maximum popup width/height
-      max_width = 60,
-      max_height = 10,
+			-- Border style
+			render = "default",
 
-      -- Render shape of the border
-      render = "default",
+			-- Optional transparency
+			-- opacity = 0.8,
+		})
 
-      -- Optional transparency if you want glass-look
-      -- uncomment if needed:
-      -- opacity = 0.8,
-    })
+		-- Make notify the default provider
+		vim.notify = notify
 
-    -- Make notify the default notification provider
-    vim.notify = notify
+		-- Keymap: view previous notifications
+		vim.keymap.set("n", "<leader>no", function()
+			require("notify").history()
+		end, { desc = "Open Notification History" })
 
-    -- Keymap to view previous notifications
-    vim.keymap.set("n", "<leader>no", function()
-      require("notify").history()
-    end, { desc = "Open Notification History" })
-  end,
+		-- Keymap: dismiss all notifications
+		vim.keymap.set("n", "<leader>nd", function()
+			require("notify").dismiss()
+		end, { desc = "Dismiss All Notifications" })
+
+		-- Optional: shortcut to toggle a test notification
+		vim.keymap.set("n", "<leader>nt", function()
+			vim.notify("Test notification!", vim.log.levels.INFO)
+		end, { desc = "Test Notification" })
+	end,
 }

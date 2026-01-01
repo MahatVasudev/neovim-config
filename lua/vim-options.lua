@@ -10,6 +10,10 @@ vim.cmd("abbr @@ mahatvasudev@gmail.com")
 
 --
 vim.g.mapleader = " "
+vim.g.current_theme = "tokyonight"
+vim.g.strict_mode = true -- Use it to avoid using up, down, left right arrows
+
+vim.g.disable_dir_session = false
 --
 vim.opt.number = true
 
