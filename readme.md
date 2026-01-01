@@ -4,7 +4,7 @@ Currently using Tokyonight Theme, but i have made it look more Persona 3 esque
 But you can dynamically choose between themes, by changing theme name in lua/vim-options.lua in vim.g.current_theme
 
 ```lua
-vim.g.current_them = "tokyonight" -- can be cyberdream, tokyonight, catppuccin, gruvbox, aurora, kanagawa
+vim.g.current_theme = "tokyonight" -- can be cyberdream, tokyonight, catppuccin, gruvbox, aurora, kanagawa
 ```
 
 
