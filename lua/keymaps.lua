@@ -93,12 +93,11 @@ end, { desc = "Diagnostics → Quickfix" })
 -- Jump to next / previous quickfix item
 keymap.set("n", "]q", ":cnext<CR>", { desc = "Next Quickfix" })
 keymap.set("n", "[q", ":cprevious<CR>", { desc = "Prev Quickfix" })
+-- TODO COMMENTS
 
 -- Optional: jump through LSP diagnostics without populating quickfix
 keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
-
--- TODO-COMMENTS
 
 -- Jump between TODOs
 vim.keymap.set("n", "]t", function()
@@ -115,13 +114,8 @@ if vim.g.strict_mode then
 		return ""
 	end
 	-- Disable arrow keys in normal mode
-	vim.keymap.set("n", "<Up>", arrow_missing, { noremap = true, silent = true })
-	vim.keymap.set("n", "<Down>", arrow_missing, { noremap = true, silent = true })
-	vim.keymap.set("n", "<Left>", arrow_missing, { noremap = true, silent = true })
-	vim.keymap.set("n", "<Right>", arrow_missing, { noremap = true, silent = true })
-	-- Optional: also in insert mode
-	vim.keymap.set("i", "<Up>", arrow_missing, { noremap = true, silent = true })
-	vim.keymap.set("i", "<Down>", arrow_missing, { noremap = true, silent = true })
-	vim.keymap.set("i", "<Left>", arrow_missing, { noremap = true, silent = true })
-	vim.keymap.set("i", "<Right>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set({ "n", "i" }, "<Up>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set({ "n", "i" }, "<Down>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set({ "n", "i" }, "<Left>", arrow_missing, { noremap = true, silent = true })
+	vim.keymap.set({ "n", "i" }, "<Right>", arrow_missing, { noremap = true, silent = true })
 end

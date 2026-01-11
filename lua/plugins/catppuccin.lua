@@ -6,7 +6,7 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			flavour = "mocha",
-			transparent_background = false,
+			transparent_background = vim.g.transparent_background,
 			term_colors = true,
 
 			styles = {
@@ -41,13 +41,16 @@ return {
 
 			highlight_overrides = {
 				mocha = function(c)
+					local bg = vim.g.transparent_background and "NONE" or c.base
+					local float_bg = vim.g.transparent_background and "NONE" or c.mantle
+					local cursorline_bg = vim.g.transparent_background and "NONE" or "#1A1A22"
 					return {
 						-- === CORE UI ===
-						Normal = { bg = c.base, fg = c.text },
-						NormalFloat = { bg = c.mantle },
+						Normal = { bg = bg, fg = c.text },
+						NormalFloat = { bg = float_bg },
 						FloatBorder = { fg = c.red },
 
-						CursorLine = { bg = "#1A1A22" },
+						CursorLine = { bg = cursorline_bg },
 						CursorLineNr = { fg = c.red, bold = true },
 						LineNr = { fg = "#44444F" },
 

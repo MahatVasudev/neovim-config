@@ -6,12 +6,14 @@ vim.cmd("set shiftwidth=2")
 vim.cmd("set clipboard=unnamedplus,unnamed")
 vim.cmd("let g:auto_save=1")
 vim.cmd("set autoindent")
-vim.cmd("abbr @@ mahatvasudev@gmail.com")
+-- vim.cmd("abbr @@ mahatvasudev@gmail.com")
+-- vim.cmd("set winbar?")
 
 --
 vim.g.mapleader = " "
-vim.g.current_theme = "tokyonight"
+vim.g.current_theme = "catppuccin"
 vim.g.strict_mode = true -- Use it to avoid using up, down, left right arrows
+vim.g.transparent_background = true
 
 vim.g.disable_dir_session = false
 --
