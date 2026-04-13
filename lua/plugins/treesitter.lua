@@ -10,13 +10,13 @@ return {
 			ensure_installed = { "javascript", "go", "lua" },
 			auto_install = true,
 			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = true,
+				enable = not vim.g.disable_highlight,
+				additional_vim_regex_highlighting = not vim.g.disable_highlight,
 			},
 
 			query_linter = {
-				enable = true,
-				use_virtual_text = true,
+				enable = not vim.g.disable_highlight,
+				use_virtual_text = not vim.g.disable_highlight,
 				lint_events = { "BufWrite", "CursorHold" },
 			},
 		})

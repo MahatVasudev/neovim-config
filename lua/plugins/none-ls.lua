@@ -12,7 +12,6 @@ return {
 				-- Go
 				null_ls.builtins.formatting.golines,
 				null_ls.builtins.diagnostics.golangci_lint,
-
 				-- Python
 				null_ls.builtins.formatting.black,
 				null_ls.builtins.formatting.isort,

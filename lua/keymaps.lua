@@ -62,7 +62,7 @@ keymap.set("n", "[q", ":cprevious<CR>")
 --
 -- Diagnostics
 --
-keymap.set("n", "<C-j>", function()
+keymap.set("n", "<C-S-j>", function()
 	vim.diagnostic.goto_next()
 end, opts)
 keymap.set("n", "=", "mzO<Esc>`z", { desc = "add blank line above" })

@@ -17,7 +17,7 @@ return {
 			-- Enable editor background transparency.
 			transparent = {
 				-- Enable transparent background.
-				bg = false,
+				bg = vim.g.transparent_background,
 				-- Enable transparent background for floating windows.
 				float = false,
 			},
@@ -55,6 +55,6 @@ return {
 				dark_background = true,
 			},
 		})
-		require("nordic").load()
+		-- require("nordic").load()
 	end,
 }

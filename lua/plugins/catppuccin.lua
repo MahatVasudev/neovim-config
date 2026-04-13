@@ -32,10 +32,10 @@ return {
 					peach = "#FF5F00",
 
 					-- kill blues
-					sky = "#F2F2F2",
-					sapphire = "#F2F2F2",
-					blue = "#F2F2F2",
-					lavender = "#F2F2F2",
+					sky = "#E3E3E3",
+					sapphire = "#050E3C",
+					blue = "#DC0000",
+					lavender = "#FAB12F",
 				},
 			},
 

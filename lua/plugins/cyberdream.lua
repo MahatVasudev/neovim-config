@@ -6,7 +6,7 @@ return {
 		require("cyberdream").setup({
 
 			variant = "dark",
-			transparent = false,
+			transparent = vim.g.transparent_background,
 			saturation = 1,
 			hide_fillchars = true,
 			borderless_pickers = false,

@@ -41,7 +41,7 @@ return {
 
 		-- Keymap: view previous notifications
 		vim.keymap.set("n", "<leader>no", function()
-			require("notify").history()
+			require("telescope").extensions.notify.notify()
 		end, { desc = "Open Notification History" })
 
 		-- Keymap: dismiss all notifications
