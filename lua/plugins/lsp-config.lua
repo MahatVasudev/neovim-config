@@ -42,11 +42,12 @@ return {
 				lineFoldingOnly = true,
 			}
 
-			local lspconfig = require("lspconfig")
+			-- local lspconfig = require("lspconfig")
 			local servers = {
 				"lua_ls",
 				"gopls",
 				"tailwindcss",
+				"dockerls",
 				"docker_compose_language_service",
 				"clangd",
 				"pyright",
@@ -57,22 +58,22 @@ return {
 			}
 
 			for _, server in ipairs(servers) do
-				lspconfig[server].setup({
+				vim.lsp.config[server] = {
 					capabilities = capabilities,
-				})
+				}
 			end
 
 			-- TypeScript/JavaScript special setup
-			lspconfig.ts_ls.setup({
+			vim.lsp.config["ts_ls"] = {
 				capabilities = capabilities,
 				on_attach = function(_, bufnr)
 					local opts = { noremap = true, silent = true }
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 				end,
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-			})
+			}
 
-			lspconfig.rust_analyzer.setup({
+			vim.lsp.config["rust_analyzer"] = {
 				capabilities = capabilities,
 				on_attach = function(_, bufnr)
 					local opts = { noremap = true, silent = true, buffer = bufnr }
@@ -91,7 +92,7 @@ return {
 						procMacro = { enable = true },
 					},
 				},
-			})
+			}
 
 			vim.diagnostic.config({
 				virtual_text = {

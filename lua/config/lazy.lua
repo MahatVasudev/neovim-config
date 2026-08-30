@@ -53,8 +53,6 @@ require("lazy").setup({
 	},
 })
 
-require("theme").apply()
-
 if vim.g.disable_highlight then
 	vim.cmd("syntax off")
 end

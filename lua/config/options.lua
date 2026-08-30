@@ -31,7 +31,7 @@ vim.opt.hlsearch = true -- Don't highlight search results
 vim.opt.incsearch = true -- Show matches as you type
 
 -- Visual Settings
-vim.opt.termguicolors = true -- Enable 24-bit colors
+-- vim.opt.termguicolors = true -- Enable 24-bit colors
 vim.opt.signcolumn = "yes" -- Always show sign column
 --vim.opt.colorcolumn = "100" -- Show column at 100 characters
 vim.opt.showmatch = true -- Highlight matching brackets
@@ -86,9 +86,6 @@ vim.opt.wildmode = "longest:full,full" -- Completion mode for command-line
 vim.opt.wildignorecase = true -- Case-insensitive tab completion in commands
 
 -- Folding Settings
-vim.opt.foldmethod = "expr" -- Use expression for folding
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding
-vim.opt.foldlevel = 99 -- Keep all folds open by default
 
 -- Split Behavior
 vim.opt.splitbelow = true -- Horizontal splits open below

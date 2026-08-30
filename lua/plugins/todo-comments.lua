@@ -15,6 +15,7 @@ return {
 			NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
 			TEST = { icon = " ", color = "test", alt = { "TESTING" } },
 			SEC = { icon = "󰒃 ", color = "error", alt = { "SECURITY", "VULN" } },
+			IMPORTANT = { icon = "󱙲 ", color = "important", alt = { "IMPORTANT!", "CRITICAL", "IMP" } },
 		},
 
 		-- FIX:
@@ -41,6 +42,11 @@ return {
 		-- SECURITY: A detected vulnaribility or security issue
 		-- VULN:
 
+		-- IMPORTANT: An important concept
+		-- CRITICAL: This is something critical
+		-- IMPORTANT!: Super Important
+		-- IMP: Short form
+
 		colors = {
 			error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
 			warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
@@ -49,6 +55,7 @@ return {
 			perf = { "#F97316" },
 			test = { "#8B5CF6" },
 			default = { "Identifier", "#7C3AED" },
+			important = { "#EF4444", "LspDiagnosticsDefaultError" }, -- Bright red (matches error intensity but distinct)
 		},
 	},
 	config = function(_, opts)

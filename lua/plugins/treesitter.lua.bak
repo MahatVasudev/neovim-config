@@ -1,0 +1,37 @@
+return {
+	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
+	build = ":TSUpdate",
+	config = function()
+		-- Set custom compilers (optional)
+		require("nvim-treesitter.install").compilers = { "clang", "gcc", "clangd" }
+
+		-- Setup the plugin (only for parser installation)
+		require("nvim-treesitter").setup()
+
+		-- Manually enable highlighting, indentation, and folding
+		vim.api.nvim_create_autocmd("FileType", {
+			callback = function()
+				-- Enable Treesitter highlighting
+				pcall(vim.treesitter.start)
+				-- Enable Treesitter-based indentation
+				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			end,
+		})
+
+		-- Manually install parsers (replaces ensure_installed)
+		local parsers = { "javascript", "go", "lua" }
+		local installed = require("nvim-treesitter.config").get_installed()
+		local to_install = vim.tbl_filter(function(lang)
+			return not vim.tbl_contains(installed, lang)
+		end, parsers)
+		if #to_install > 0 then
+			require("nvim-treesitter").install(to_install)
+		end
+
+		-- Set folding options
+		vim.opt.foldmethod = "expr"
+		vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+		vim.opt.foldlevel = 99
+	end,
+}

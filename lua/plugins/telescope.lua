@@ -12,7 +12,13 @@ return {
 			-- 		cwd = vim.fn.getcwd(),
 			-- 	})
 			-- end, {})
-
+			require("telescope").setup({
+				pickers = {
+					colorscheme = {
+						enable_preview = true,
+					},
+				},
+			})
 			vim.keymap.set("n", "<C-p>", function()
 				require("telescope.builtin").find_files({
 					cwd = vim.fn.getcwd(),

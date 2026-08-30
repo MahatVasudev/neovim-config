@@ -9,9 +9,10 @@ vim.cmd("set autoindent")
 -- vim.cmd("abbr @@ <somegmail@gmail.com")
 -- vim.cmd("set winbar?")
 
---
 vim.g.mapleader = " "
-vim.g.current_theme = "kanagawa-lotus"
+
+vim.g.is_tty = os.getenv("TERM") == "linux"
+
 vim.g.strict_mode = true -- Use it to avoid using up, down, left right arrows
 vim.g.transparent_background = false
 vim.g.disable_highlight = false
@@ -47,4 +48,4 @@ vim.opt.splitright = true
 -- vim.opt.splitkeep = "cursor"
 vim.opt.mouse = ""
 vim.opt.formatoptions:append({ "r" })
-vim.lsp.set_log_level("off")
+vim.lsp.log.set_level("off")

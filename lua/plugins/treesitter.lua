@@ -1,11 +1,12 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	branch = "master",
 	config = function()
 		require("nvim-treesitter.install").compilers = { "clang", "gcc", "clangd" }
-		local config = require("nvim-treesitter.configs")
+		local configs = require("nvim-treesitter.configs")
 
-		config.setup({
+		configs.setup({
 
 			ensure_installed = { "javascript", "go", "lua" },
 			auto_install = true,
@@ -20,5 +21,9 @@ return {
 				lint_events = { "BufWrite", "CursorHold" },
 			},
 		})
+
+		vim.opt.foldmethod = "expr" -- Use expression for folding
+		vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding
+		vim.opt.foldlevel = 99 -- Keep all folds open by default
 	end,
 }
