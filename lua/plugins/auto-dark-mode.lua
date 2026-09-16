@@ -16,7 +16,7 @@ return {
 		set_light_mode = function()
 			if not vim.g.is_tty then
 				vim.opt.termguicolors = true
-				vim.g.current_theme = "morning"
+				vim.g.current_theme = "catppuccin-latte"
 			else
 				vim.opt.termguicolors = false
 				vim.g.current_theme = "blue"

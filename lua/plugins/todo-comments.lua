@@ -8,6 +8,7 @@ return {
 		},
 		keywords = {
 			FIX = { icon = " ", color = "error", alt = { "FIXME", "BUG" } },
+			THOUGHT_PROCESS = { icon = " ", color = "thought", alt = { "TP", "THOUGHT", "FFT", "THINK" } },
 			TODO = { icon = " ", color = "info" },
 			HACK = { icon = " ", color = "warning" },
 			WARN = { icon = " ", color = "warning", alt = { "WARNING" } },
@@ -22,7 +23,7 @@ return {
 		-- FIXME: Any Errors That needs fixing
 		-- BUG:
 
-		-- TODO: A pending tasks
+		-- TODO: A pending task
 
 		-- HACK: A Bad Code
 
@@ -47,6 +48,11 @@ return {
 		-- IMPORTANT!: Super Important
 		-- IMP: Short form
 
+		-- THOUGHT:
+		-- TP:
+		-- FFT:
+		-- THINK:
+
 		colors = {
 			error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
 			warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
@@ -54,6 +60,7 @@ return {
 			hint = { "LspDiagnosticsDefaultHint", "#10B981" },
 			perf = { "#F97316" },
 			test = { "#8B5CF6" },
+			thought = { "#29739f", "LspDiagnosticsDefaultInformation" },
 			default = { "Identifier", "#7C3AED" },
 			important = { "#EF4444", "LspDiagnosticsDefaultError" }, -- Bright red (matches error intensity but distinct)
 		},
