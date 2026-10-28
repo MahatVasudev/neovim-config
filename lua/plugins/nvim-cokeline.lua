@@ -20,7 +20,7 @@ return {
 						return buffer.is_focused and get_hex("ColorColumn", "bg") or get_hex("Normal", "fg")
 					end,
 					bg = function(buffer)
-						return buffer.is_focused and get_hex("Normal", "fg") or get_hex("ColorColumn", "bg")
+						return buffer.is_focused and get_hex("Comment", "fg") or get_hex("ColorColumn", "bg")
 					end,
 				},
 
@@ -37,7 +37,7 @@ return {
 						text = function(buffer)
 							return buffer.unique_prefix
 						end,
-						fg = get_hex("Comment", "fg"),
+						fg = get_hex("Normal", "fg"),
 						italic = true,
 					},
 					{
@@ -57,7 +57,7 @@ return {
 						end,
 						-- highlight = function(buffer)
 						-- 	if buffer.is_modified then
-						-- 		return { fg = "Orange" }
+						-- 		return { fg = "orange" }
 						-- 	end
 						-- 	return {}
 						-- end,

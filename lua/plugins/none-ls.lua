@@ -22,6 +22,11 @@ return {
 		-- Format on save (safe)
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			callback = function()
+				local ignored_filetypes = { "markdown", "text" }
+
+				if vim.tbl_contains(ignored_filetypes, vim.bo.filetype) then
+					return
+				end
 				vim.lsp.buf.format({ async = false })
 			end,
 		})
