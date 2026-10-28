@@ -1,6 +1,7 @@
 -- Lua
 return {
 	"f-person/auto-dark-mode.nvim",
+  cond = not vim.env.TERMUX_VERSION,
 	opts = {
 		set_dark_mode = function()
 			if not vim.g.is_tty then
