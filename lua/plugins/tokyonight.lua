@@ -6,7 +6,7 @@ return {
 		require("tokyonight").setup({
 			style = "night",
 			transparent = vim.g.transparent_background,
-			terminal_colors = false,
+			terminal_colors = true,
 
 			styles = {
 				comments = { italic = true },
@@ -19,6 +19,9 @@ return {
 
 			-- 🎨 Core color tuning (THIS is the Persona feel)
 			on_colors = function(colors)
+				if vim.g.current_theme ~= "tokyonight-night" then
+					return
+				end
 				colors.bg = "#0b1220" -- deep moonlit blue
 				colors.bg_dark = "#080e1a"
 				colors.bg_float = "#0b1220"
@@ -36,6 +39,9 @@ return {
 
 			-- ✨ Highlight shaping (where the vibe really locks in)
 			on_highlights = function(hl, c)
+				if vim.g.current_theme ~= "tokyonight-night" then
+					return
+				end
 				-- Cursor & focus
 				hl.CursorLine = { bg = "#10182d" }
 				hl.CursorColumn = { bg = "#10182d" }

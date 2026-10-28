@@ -94,36 +94,36 @@ return {
 			end,
 			desc = "FZF Git Status",
 		},
-		{
-			"<leader>gc",
-			function()
-				require("fzf-lua").git_commits()
-			end,
-			desc = "FZF Git Commits",
-		},
-		{
-			"<leader>gb",
-			function()
-				require("fzf-lua").git_branches()
-			end,
-			desc = "FZF Git Branches",
-		},
+		-- {
+		-- 	"<leader>gc",
+		-- 	function()
+		-- 		require("fzf-lua").git_commits()
+		-- 	end,
+		-- 	desc = "FZF Git Commits",
+		-- },
+		-- {
+		-- 	"<leader>gb",
+		-- 	function()
+		-- 		require("fzf-lua").git_branches()
+		-- 	end,
+		-- 	desc = "FZF Git Branches",
+		-- },
 
 		-- lsp
-		{
-			"gr",
-			function()
-				require("fzf-lua").lsp_references()
-			end,
-			desc = "FZF LSP References",
-		},
-		{
-			"gd",
-			function()
-				require("fzf-lua").lsp_definitions()
-			end,
-			desc = "FZF LSP Definitions",
-		},
+		-- {
+		-- 	"gr",
+		-- 	function()
+		-- 		require("fzf-lua").lsp_references()
+		-- 	end,
+		-- 	desc = "FZF LSP References",
+		-- },
+		-- {
+		-- 	"gd",
+		-- 	function()
+		-- 		require("fzf-lua").lsp_definitions()
+		-- 	end,
+		-- 	desc = "FZF LSP Definitions",
+		-- },
 		{
 			"<leader>ls",
 			function()
@@ -151,6 +151,13 @@ return {
 				require("fzf-lua").diagnostics_workspace()
 			end,
 			desc = "FZF Diagnostics (Workspace)",
+		},
+		{
+			"<leader>fj",
+			function()
+				require("fzf-lua").jumps()
+			end,
+			desc = "FZF Jumps",
 		},
 	},
 

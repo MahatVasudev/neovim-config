@@ -6,7 +6,7 @@ return {
 		set_dark_mode = function()
 			if not vim.g.is_tty then
 				vim.opt.termguicolors = true
-				vim.g.current_theme = "nekonight-deep-ocean"
+				vim.g.current_theme = "gruvbox-material"
 			else
 				vim.opt.termguicolors = false
 				vim.g.current_theme = "blue"
@@ -17,7 +17,7 @@ return {
 		set_light_mode = function()
 			if not vim.g.is_tty then
 				vim.opt.termguicolors = true
-				vim.g.current_theme = "catppuccin-latte"
+				vim.g.current_theme = "rose-pine-dawn"
 			else
 				vim.opt.termguicolors = false
 				vim.g.current_theme = "blue"

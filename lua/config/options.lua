@@ -78,7 +78,7 @@ vim.opt.autochdir = false -- Don't change directory automatically
 vim.opt.path:append("**") -- Search into subfolders with `gf`
 vim.opt.selection = "inclusive" -- Use inclusive selection
 vim.opt.mouse = "a" -- Enable mouse support
-vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
+vim.opt.clipboard = "unnamedplus" -- Use system clipboard
 vim.opt.modifiable = true -- Allow editing buffers
 vim.opt.encoding = "UTF-8" -- Use UTF-8 encoding
 vim.opt.wildmenu = true -- Enable command-line completion menu

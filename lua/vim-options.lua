@@ -14,9 +14,10 @@ vim.g.mapleader = " "
 vim.g.is_tty = os.getenv("TERM") == "linux"
 
 vim.g.strict_mode = true -- Use it to avoid using up, down, left right arrows
-vim.g.transparent_background = false
+vim.g.transparent_background = true
 vim.g.disable_highlight = false
 vim.g.disable_dir_session = false
+vim.g.alternative_line_color = false
 --
 vim.opt.number = true
 
@@ -49,3 +50,13 @@ vim.opt.splitright = true
 vim.opt.mouse = ""
 vim.opt.formatoptions:append({ "r" })
 vim.lsp.log.set_level("off")
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "text" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.textwidth = 0
+		vim.opt_local.breakindent = true
+	end,
+})

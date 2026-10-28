@@ -49,7 +49,6 @@ return {
 				"tailwindcss",
 				"dockerls",
 				"docker_compose_language_service",
-				"clangd",
 				"pyright",
 				"rust_analyzer",
 				"html",
@@ -62,6 +61,15 @@ return {
 					capabilities = capabilities,
 				}
 			end
+
+			vim.lsp.config["clangd"] = {
+				capabilities = capabilities,
+
+				cmd = vim.list_extend(
+					vim.lsp.config["clangd"].cmd or { "clangd" },
+					{ "--background-index", "--clang-tidy", "--completion-style=detailed", "--header-insertion=iwyu" }
+				),
+			}
 
 			-- TypeScript/JavaScript special setup
 			vim.lsp.config["ts_ls"] = {
@@ -78,8 +86,8 @@ return {
 				on_attach = function(_, bufnr)
 					local opts = { noremap = true, silent = true, buffer = bufnr }
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+					-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+					-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 					vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
 				end,
 				settings = {
@@ -108,8 +116,8 @@ return {
 			-- LSP keybindings
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Info" })
 			vim.keymap.set("n", "go", vim.lsp.buf.type_definition, { desc = "Type Definition" })
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References" })
-			vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, { desc = "Go to Definition" })
+			-- vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References" })
+			-- vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, { desc = "Go to Definition" })
 			vim.keymap.set({ "n", "v" }, "<Leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 			vim.keymap.set("n", "<Leader>di", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
