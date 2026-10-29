@@ -1,3 +1,24 @@
+local is_termux = vim.fn.has("android") == 1
+  or (vim.env.PREFIX or ""):match("/com%.termux/") ~= nil
+
+local mason_servers = {
+  "lua_ls",
+  "gopls",
+  "tailwindcss",
+  "dockerls",
+  "docker_compose_language_service",
+  "pyright",
+  "rust_analyzer",
+  "html",
+  "cssls",
+  "prismals",
+  "ts_ls",
+}
+
+if not is_termux then
+  table.insert(mason_servers, "clangd")
+end
+
 return {
 	{
 		"williamboman/mason.nvim",
@@ -11,7 +32,8 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		opts = {
-			auto_install = true,
+      ensure_installed = mason_servers,
+			automatic_enable = false,
 		},
 	},
 
@@ -54,22 +76,32 @@ return {
 				"html",
 				"cssls",
 				"prismals",
+        "clangd",
 			}
 
 			for _, server in ipairs(servers) do
+        vim.lsp.enable(server)
 				vim.lsp.config[server] = {
 					capabilities = capabilities,
 				}
 			end
 
-			vim.lsp.config["clangd"] = {
-				capabilities = capabilities,
+      local clangd = vim.fn.exepath("clangd")
 
-				cmd = vim.list_extend(
-					vim.lsp.config["clangd"].cmd or { "clangd" },
-					{ "--background-index", "--clang-tidy", "--completion-style=detailed", "--header-insertion=iwyu" }
-				),
-			}
+      if clangd == "" then
+        clangd = "clangd"
+      end
+
+      vim.lsp.config["clangd"] = {
+        capabilities = capabilities,
+        cmd = {
+          clangd,
+          "--background-index",
+          "--clang-tidy",
+          "--completion-style=detailed",
+          "--header-insertion=iwyu",
+        },
+      }
 
 			-- TypeScript/JavaScript special setup
 			vim.lsp.config["ts_ls"] = {
@@ -80,6 +112,8 @@ return {
 				end,
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 			}
+
+      vim.lsp.enable("ts_ls")
 
 			vim.lsp.config["rust_analyzer"] = {
 				capabilities = capabilities,
